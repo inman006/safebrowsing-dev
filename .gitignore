@@ -3,3 +3,6 @@
 
 # Python notebooks
 *.ipynb
+
+# VS Code settings
+.vscode/
