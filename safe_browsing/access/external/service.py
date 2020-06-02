@@ -2,7 +2,6 @@
 
 import requests
 
-# from safe_browsing.ifx.configuration import get_value
 import safe_browsing.ifx.configuration as config
 
 
