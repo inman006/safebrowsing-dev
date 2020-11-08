@@ -1,4 +1,4 @@
-"""This is where you would write your tests."""
+"""External access integration test suite."""
 
 import dacite
 import pytest
