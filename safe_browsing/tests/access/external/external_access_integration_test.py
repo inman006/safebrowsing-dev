@@ -8,25 +8,44 @@ import safe_browsing.access.external.service as external_access
 import safe_browsing.tests.helpers.request_builder as request_builder
 
 
-@pytest.mark.parametrize(
-    'arg, expected',
-    [
-        (
-            ['www.google.com', 'www.youtube.com'],
-            {'safe': ['www.google.com', 'www.youtube.com'], 'unsafe': []}
-        ),
-        (
-            ['http://malware.testing.google.test/testing/malware/'],
-            {'safe': [], 'unsafe': ['http://malware.testing.google.test/testing/malware/']}
-        ),
-    ]
+# Globals --------------------------------------------------------------------
+
+
+SAFE_TEST_CASE = dict(
+    arg=['www.google.com', 'www.youtube.com'],
+    expected={
+        'safe': ['www.google.com', 'www.youtube.com'],
+        'unsafe': [],
+    },
 )
-def test_access(arg, expected):
+
+UNSAFE_TEST_CASE = dict(
+    arg=['http://malware.testing.google.test/testing/malware/'],
+    expected={
+        'safe': [],
+        'unsafe': ['http://malware.testing.google.test/testing/malware/'],
+    },
+)
+
+
+# Fixtures -------------------------------------------------------------------
+
+
+@pytest.fixture(params=[SAFE_TEST_CASE, UNSAFE_TEST_CASE])
+def access_test_cases(request):
+    """External access test cases."""
+    return request.param
+
+
+# Tests ----------------------------------------------------------------------
+
+
+def test_access(access_test_cases):
     """Test external_access."""
     # Arrange ----------------------------------------------------------------
-    safe_browsing_request = request_builder.build(arg)
+    safe_browsing_request = request_builder.build(access_test_cases['arg'])
     # Act --------------------------------------------------------------------
     response = external_access.call_api(safe_browsing_request)
     # Assert -----------------------------------------------------------------
-    assert response.safe_urls == expected['safe']
-    assert response.unsafe_urls == expected['unsafe']
+    assert response.safe_urls == access_test_cases['expected']['safe']
+    assert response.unsafe_urls == access_test_cases['expected']['unsafe']
