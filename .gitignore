@@ -9,3 +9,6 @@
  
 # Configuration files
 config.ini
+
+# Linux hidden files
+.*
