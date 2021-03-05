@@ -1,0 +1,31 @@
+1. Go back to master (ONCE @ BEGINNING) (GIT)
+$ git checkout master
+$ git pull
+$ git status
+
+2. Make a new branch off of master called readme (ONCE @ BEGINNING) (GIT)
+$ git checkout -b readme
+
+3. Change your readme (REPEAT) (PYTHON)
+...
+
+4. Commit changes (REPEAT) (GIT)
+$ git status
+...
+$ git add ...
+...
+$ git add ...
+...
+$ git commit -m "....."  (This part is easier in VSCODE) (USE CMD+RETURN to commit)
+
+5. Push changes (THIS IS THE GREEN DOT) (REPEAT) (GIT)
+$ git push
+
+.
+.
+.
+
+6. Once all of your readme changes are good to go...
+merge them into master (Triggers Travis CI build) (ONCE @ END)
+
+This also updates the codecoverage sunburst and icon (GIT)
