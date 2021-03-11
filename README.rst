@@ -3,7 +3,7 @@ SafeBrowsing-dev
 
 |build| |codecov| |license|
 
-.. image:: /Users/ryaninman/Code/safebrowsing-dev/logo.png
+.. image:: images/logo.png
 
 Table of Contents
 -----------------
